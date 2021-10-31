@@ -3,9 +3,18 @@ import { useTracker } from 'meteor/react-meteor-data';
 import { QuestionsCollection } from '../db/QuestionsCollection.js';
 import { Question } from './Question.jsx';
 import { QuestionForm } from './QuestionForm';
+import { LoginForm } from './LoginForm.jsx';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import { Admin } from './Admin.jsx';
 
 export const App = () => {
   const onlyApprovedFilter = {
@@ -17,16 +26,32 @@ export const App = () => {
   }).fetch());
 
   return (
-    <section>
+    <Router>
       <ToastContainer toastClassName='Toastify__toast-theme--colored' />
-      <div className="content">
-        <h3>Ask your questions here!</h3>
-        <QuestionForm />
-        <h3>See other questions</h3>
-        <section>
-          { questions.map(question => <Question key={ question._id} question={ question } />)}
-        </section>
-      </div>
-    </section>
+      <Switch>
+        <Route path="/login">
+          <div className="content">
+            <LoginForm />
+          </div>
+        </Route>
+        <Route path="/admin">
+          <div className="content">
+            <Admin />
+          </div>
+        </Route>
+        <Route path="/">
+          <section>
+            <div className="content">
+              <h3>Ask your questions here!</h3>
+              <QuestionForm />
+              <h3>See other questions</h3>
+              <section>
+                { questions.map(question => <Question key={ question._id} question={ question } />)}
+              </section>
+            </div>
+          </section>
+          </Route>
+      </Switch>
+    </Router>
   );
 };

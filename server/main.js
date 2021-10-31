@@ -1,19 +1,20 @@
 import { Meteor } from 'meteor/meteor';
+import { Accounts } from 'meteor/accounts-base';
 import { QuestionsCollection } from '../imports/db/QuestionsCollection';
+import { randomBytes } from 'crypto';
 import '/imports/api/questionsMethods'
 
 const insertQuestion = questionText => QuestionsCollection.insert({ text: questionText });
 
 Meteor.startup(() => {
-  if (QuestionsCollection.find().count() === 0) {
-    [
-      'First Question',
-      'Second Question',
-      'Third Question',
-      'Fourth Question',
-      'Fifth Question',
-      'Sixth Question',
-      'Seventh Question'
-    ].forEach(insertQuestion)
+  if (!Accounts.findUserByUsername('admin')) {
+    const password = Buffer.from(randomBytes(12)).toString('base64');
+
+    console.log("Creating admin user with password " + password + ". Make sure to change the password before using in production.");
+
+    Accounts.createUser({
+      username: 'admin',
+      password,
+    });
   }
 });

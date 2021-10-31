@@ -14,6 +14,14 @@
   transform: scale(1.3);
 }
 
+.question__response_area {
+  min-height: 0rem !important;
+}
+
 textarea {
   transition-property: border !important;
+}
+
+.frame {
+  box-shadow: 0 .2rem 1.25rem 0 rgba(27,30,36,.22) !important;
 }
