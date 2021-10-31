@@ -1,7 +1,27 @@
 import React, { useEffect } from 'react';
-import { useState } from 'react';
+import { questionMachine } from "../state/questionState";
+import { QuestionsCollection } from '../db/QuestionsCollection';
 
 export const PresenterQuestion = ({ question }) => {
+    const handleTransition = transition => {
+        const nextStatus = questionMachine.states[question.status].on[transition].target;
+
+        if (transition == "SPOTLIGHT") {
+            // Only one question should be spotlighted by the presenter
+            const spotLightedQuestions = QuestionsCollection.find({ status: {$eq: "spotlight"}}, {}).fetch();
+
+            spotLightedQuestions.forEach((question) => {
+                Meteor.call('questions.setStatus', question._id, "approved");
+            });
+        }
+
+        Meteor.call('questions.setStatus', question._id, nextStatus, (err, res) => {
+          if (err) {
+              toast.error("Error setting status: " + err);
+          }
+      });
+    }
+
     return (
         <div class="frame my-4 w-100 presenter__question">
             <div className={`frame__body p-0 ${question.status == "spotlight" ? "bg-yellow-200 presenter__spotlight" : ""}`}>
@@ -12,19 +32,19 @@ export const PresenterQuestion = ({ question }) => {
                         </span>
                         { question.votes }
                     </div>
-                    <div class="u-text-right presenter__actions">
+                    <div class="u-text-right presenter__actions text-gray-700">
                         { question.status == "approved" &&
-                        <div>
+                        <div onClick={ handleTransition.bind(this, "SPOTLIGHT") }>
                             <i className={`fa-wrapper fa-lightbulb fa-fw far`}></i>
                         </div>
 }
 
-                        <div>
+                        <div onClick={ handleTransition.bind(this, "ANSWERED") }>
                             <i className={`fa-wrapper fa-check fa-fw fas`}></i>
                         </div>
 
                         { question.status == "spotlight" &&
-                        <div>
+                        <div onClick={ handleTransition.bind(this, "CANCEL") }>
                             <i className={`fa-wrapper fa-caret-down fa-fw fas`}></i>
                         </div>
 }
