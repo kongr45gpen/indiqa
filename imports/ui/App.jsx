@@ -6,7 +6,7 @@ import { QuestionForm } from './QuestionForm';
 
 export const App = () => {
   const questions = useTracker(() => QuestionsCollection.find({}, {
-    sort: [['votes', 'desc'], ['createdAt', 'asc']]
+    sort: [ ['status', 'desc'], ['votes', 'desc'], ['createdAt', 'asc']]
   }).fetch());
 
   return (

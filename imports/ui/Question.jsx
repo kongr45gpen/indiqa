@@ -35,12 +35,12 @@ export const Question = ({ question }) => {
                 <div class="p-3 font-alt question__text">
                     { question.text }
                 </div>
-                { question.response &&
+                { question.status == "answered" &&
                     <div class="frame__footer bg-green-100">
                         <div class="frame__subtitle">
                             <span class="tag tag--success mr-1">
                                 <i class="fa-wrapper fa-check fas mr-1"></i>
-                                Answered:</span>
+                                Answered</span>
                             <span class="text-green-800">{ question.response }</span>
                         </div>
                     </div>
