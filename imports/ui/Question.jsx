@@ -25,16 +25,26 @@ export const Question = ({ question }) => {
 
     return (
         <div class="frame my-4">
-            <div class="frame__body">
-                <div class="u-pull-right m-2 question__vote" onClick={handleVote}>
+            <div class="frame__body p-0">
+                <div class="u-pull-right m-3 question__vote" onClick={handleVote}>
                     <span class="icon subtitle">
                         <i class="fa-wrapper fa-heart" className={`fa-wrapper fa-heart ${voted ? "fas text-danger" : "far"}`}></i>
                     </span>
                     { question.votes }
                 </div>
-                <div class="p-2 font-alt question__text">
+                <div class="p-3 font-alt question__text">
                     { question.text }
                 </div>
+                { question.response &&
+                    <div class="frame__footer bg-green-100">
+                        <div class="frame__subtitle">
+                            <span class="tag tag--success mr-1">
+                                <i class="fa-wrapper fa-check fas mr-1"></i>
+                                Answered:</span>
+                            <span class="text-green-800">{ question.response }</span>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     )
