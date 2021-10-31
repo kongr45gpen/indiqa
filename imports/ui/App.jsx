@@ -2,6 +2,7 @@ import React from 'react';
 import { useTracker } from 'meteor/react-meteor-data';
 import { QuestionsCollection } from '../api/QuestionsCollection.js';
 import { Question } from './Question.jsx';
+import { QuestionForm } from './QuestionForm';
 
 export const App = () => {
   const questions = useTracker(() => QuestionsCollection.find({}).fetch());
@@ -12,6 +13,7 @@ export const App = () => {
       <ul>
         { questions.map(question => <Question key={ question._id} question={ question } />)}
       </ul>
+      <QuestionForm />
     </div>
   );
 };
