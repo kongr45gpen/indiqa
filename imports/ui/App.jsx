@@ -5,7 +5,11 @@ import { Question } from './Question.jsx';
 import { QuestionForm } from './QuestionForm';
 
 export const App = () => {
-  const questions = useTracker(() => QuestionsCollection.find({}, {
+  const onlyApprovedFilter = {
+    status: { $in: [ 'approved', 'answered' ]}
+  }
+
+  const questions = useTracker(() => QuestionsCollection.find(onlyApprovedFilter, {
     sort: [ ['status', 'desc'], ['votes', 'desc'], ['createdAt', 'asc']]
   }).fetch());
 
