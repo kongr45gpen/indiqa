@@ -8,9 +8,14 @@ export const QuestionForm = () => {
 
     if (!text) return;
 
-    Meteor.call('questions.insert', text);
+    Meteor.call('questions.insert', text, (err, res) => {
+        if (err) {
+            console.error(err);
+        } else {
+            setText("");
+        }
+    });
 
-    setText("");
   };
 
   return (
@@ -20,6 +25,7 @@ export const QuestionForm = () => {
             type="text"
             placeholder="Type here to ask a question..."
             class="input-large"
+            autoFocus="autoFocus"
             value={text}
             onChange={(e) => setText(e.target.value)} //TODO: Throttle
         />

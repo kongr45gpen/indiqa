@@ -6,7 +6,7 @@ import { QuestionForm } from './QuestionForm';
 
 export const App = () => {
   const onlyApprovedFilter = {
-    status: { $in: [ 'approved', 'answered' ]}
+    status: { $in: [ 'approved', 'answered', 'new' ]}
   }
 
   const questions = useTracker(() => QuestionsCollection.find(onlyApprovedFilter, {

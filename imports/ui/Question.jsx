@@ -17,15 +17,19 @@ export const Question = ({ question }) => {
         e.preventDefault();
 
         if (!voted) {
-            Meteor.call('questions.vote', question._id);
-            setVoted(true);
-            localStorage.setItem(localStorageId + 'voted', true);
+            Meteor.call('questions.vote', question._id, (err, res) => {
+                if (!error) {
+                    setVoted(true);
+                    localStorage.setItem(localStorageId + 'voted', true);
+                }
+            });
+
         }
     };
 
     return (
         <div class="frame my-4">
-            <div class="frame__body p-0">
+            <div className={`frame__body p-0 ${question.status == "answered" ? "text-gray-700" : ""}`}>
                 <div class="u-pull-right m-3 question__vote" onClick={handleVote}>
                     <span class="icon subtitle">
                         <i class="fa-wrapper fa-heart" className={`fa-wrapper fa-heart ${voted ? "fas text-danger" : "far"}`}></i>
