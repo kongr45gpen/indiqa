@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { QuestionsCollection } from '../api/QuestionsCollection';
 
 export const QuestionForm = () => {
   const [text, setText] = useState("");
@@ -9,10 +8,7 @@ export const QuestionForm = () => {
 
     if (!text) return;
 
-    QuestionsCollection.insert({
-      text: text.trim(),
-      createdAt: new Date()
-    });
+    Meteor.call('questions.insert', text);
 
     setText("");
   };

@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { QuestionsCollection } from '../imports/api/QuestionsCollection';
+import '/imports/api/questionsMethods'
 
 const insertQuestion = questionText => QuestionsCollection.insert({ text: questionText });
 
