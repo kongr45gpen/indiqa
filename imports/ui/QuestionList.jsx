@@ -24,7 +24,7 @@ export const QuestionList = () => {
       <div className="content mt-4">
         <h3>Ask your questions here!</h3>
         <QuestionForm />
-        <h3>See other questions</h3>
+        <h3>Vote on other questions</h3>
         <section>
           {questions.map((question) => (
             <Question key={question._id} question={question} />

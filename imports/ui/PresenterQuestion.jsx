@@ -6,15 +6,6 @@ export const PresenterQuestion = ({ question }) => {
     const handleTransition = transition => {
         const nextStatus = questionMachine.states[question.status].on[transition].target;
 
-        if (transition == "SPOTLIGHT") {
-            // Only one question should be spotlighted by the presenter
-            const spotLightedQuestions = QuestionsCollection.find({ status: {$eq: "spotlight"}}, {}).fetch();
-
-            spotLightedQuestions.forEach((question) => {
-                Meteor.call('questions.setStatus', question._id, "approved");
-            });
-        }
-
         Meteor.call('questions.setStatus', question._id, nextStatus, (err, res) => {
           if (err) {
               toast.error("Error setting status: " + err);
