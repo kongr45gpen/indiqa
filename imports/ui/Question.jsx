@@ -18,7 +18,7 @@ export const Question = ({ question }) => {
 
         if (!voted) {
             Meteor.call('questions.vote', question._id, (err, res) => {
-                if (!error) {
+                if (!err) {
                     setVoted(true);
                     localStorage.setItem(localStorageId + 'voted', true);
                 }
@@ -36,7 +36,7 @@ export const Question = ({ question }) => {
                     </span>
                     { question.votes }
                 </div>
-                <div class="p-3 font-alt question__text">
+                <div class="p-3 question__text">
                     { question.text }
                 </div>
                 { question.status == "answered" &&

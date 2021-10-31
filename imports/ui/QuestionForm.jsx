@@ -27,7 +27,7 @@ export const QuestionForm = () => {
         <textarea
             type="text"
             placeholder="Type here to ask a question..."
-            className="input-large"
+            className="input-large font-alt"
             autoFocus="autoFocus"
             value={text}
             onChange={(e) => setText(e.target.value)} //TODO: Throttle

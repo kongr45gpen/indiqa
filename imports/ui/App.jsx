@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTracker } from 'meteor/react-meteor-data';
-import { QuestionsCollection } from '../api/QuestionsCollection.js';
+import { QuestionsCollection } from '../db/QuestionsCollection.js';
 import { Question } from './Question.jsx';
 import { QuestionForm } from './QuestionForm';
 
@@ -19,7 +19,7 @@ export const App = () => {
   return (
     <section>
       <ToastContainer toastClassName='Toastify__toast-theme--colored' />
-      <div class="content">
+      <div className="content">
         <h3>Ask your questions here!</h3>
         <QuestionForm />
         <h3>See other questions</h3>

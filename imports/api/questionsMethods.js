@@ -1,5 +1,5 @@
 import { check } from 'meteor/check';
-import { QuestionsCollection } from './QuestionsCollection';
+import { QuestionsCollection } from '../db/QuestionsCollection';
 
 Meteor.methods({
   'questions.insert'(text) {
