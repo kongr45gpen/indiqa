@@ -30,6 +30,17 @@ Meteor.methods({
       throw new Meteor.Error('Not authorized.');
     }
 
+    if (newStatus == "spotlight") {
+        // Only one question should be spotlighted by the presenter
+        const spotLightedQuestions = QuestionsCollection.find({ status: {$eq: "spotlight"}}, {}).fetch();
+
+        QuestionsCollection.update(questionId, {
+            $set: {
+              status: "approved"
+            }
+        });
+    }
+
     QuestionsCollection.update(questionId, {
       $set: {
         status: newStatus

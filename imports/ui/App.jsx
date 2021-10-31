@@ -1,8 +1,4 @@
 import React from 'react';
-import { useTracker } from 'meteor/react-meteor-data';
-import { QuestionsCollection } from '../db/QuestionsCollection.js';
-import { Question } from './Question.jsx';
-import { QuestionForm } from './QuestionForm';
 import { LoginForm } from './LoginForm.jsx';
 
 import { ToastContainer } from 'react-toastify';
@@ -16,16 +12,9 @@ import {
 } from "react-router-dom";
 import { Admin } from './Admin.jsx';
 import { Presenter } from './Presenter.jsx';
+import { QuestionList } from './QuestionList.jsx';
 
 export const App = () => {
-  const onlyApprovedFilter = {
-    status: { $in: [ 'approved', 'answered', 'spotlight' ]}
-  }
-
-  const questions = useTracker(() => QuestionsCollection.find(onlyApprovedFilter, {
-    sort: [ ['status', 'desc'], ['votes', 'desc'], ['createdAt', 'asc']]
-  }).fetch());
-
   return (
     <Router>
       <ToastContainer toastClassName='Toastify__toast-theme--colored' />
@@ -46,17 +35,8 @@ export const App = () => {
           </div>
         </Route>
         <Route path="/">
-          <section>
-            <div className="content">
-              <h3>Ask your questions here!</h3>
-              <QuestionForm />
-              <h3>See other questions</h3>
-              <section>
-                { questions.map(question => <Question key={ question._id} question={ question } />)}
-              </section>
-            </div>
-          </section>
-          </Route>
+          <QuestionList />
+        </Route>
       </Switch>
     </Router>
   );
