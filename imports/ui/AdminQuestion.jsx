@@ -58,9 +58,11 @@ export const AdminQuestion = ({ question }) => {
         <p>{question.text}</p>
       </div>
       <div class="card__action-bar u-center">
-          { Object.keys(questionMachine.states[question.status].on).map(event =>
-            <button key={ event } className="btn-link outline btn-small" onClick={handleTransition.bind(this, event)}>{ event }</button>
-            )}
+          { Object.keys(questionMachine.states[question.status].on).map(event => {
+              const state = questionMachine.states[question.status].on[event];
+
+            return (<button key={ event } className={`outline btn-${state.color} btn-small`} onClick={handleTransition.bind(this, event)}>{ event }</button>);
+          })}
       </div>
       {(question.status != "new") &&
       (

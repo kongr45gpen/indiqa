@@ -4,32 +4,32 @@ export const questionMachine = {
   states: {
     new: {
         on: {
-            REJECT: { target: 'rejected' },
-            APPROVE: { target: 'approved' },
+            REJECT: { target: 'rejected', color: 'danger' },
+            APPROVE: { target: 'approved', color: 'success' },
         }
     },
     approved: {
         on: {
-            SPOTLIGHT: { target: 'spotlight' },
-            REJECT: { target: 'rejected' },
-            ANSWER: { target: 'answered' }
+            SPOTLIGHT: { target: 'spotlight', color: 'warning' },
+            REJECT: { target: 'rejected', color: 'danger' },
+            ANSWER: { target: 'answered', color: 'success' }
         }
     },
     rejected: {
         on: {
-            RESTORE: { target: 'new' }
+            RESTORE: { target: 'new', color: 'info' }
         }
     },
     spotlight: {
         on: {
-            CANCEL: { target: 'approved' },
-            ANSWER: { target: 'answered' }
+            CANCEL: { target: 'approved', color: 'dark' },
+            ANSWER: { target: 'answered', color: 'success' }
         }
     },
     answered: {
         on: {
-            REJECT: { target: 'rejected' },
-            RESTORE: { target: 'approved' }
+            REJECT: { target: 'rejected', color: 'danger' },
+            RESTORE: { target: 'approved', color: 'link' }
         }
     }
   }
