@@ -13,3 +13,7 @@
 .question__vote:hover .icon {
   transform: scale(1.3);
 }
+
+textarea {
+  transition-property: border !important;
+}

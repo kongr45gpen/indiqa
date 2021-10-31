@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { toast } from 'react-toastify';
+
 export const QuestionForm = () => {
   const [text, setText] = useState("");
 
@@ -10,9 +12,10 @@ export const QuestionForm = () => {
 
     Meteor.call('questions.insert', text, (err, res) => {
         if (err) {
-            console.error(err);
+            toast.error("Error submitting question: " + err);
         } else {
             setText("");
+            toast.success("Your question has been sumbitted! A moderator will approve it shortly...");
         }
     });
 
@@ -20,18 +23,18 @@ export const QuestionForm = () => {
 
   return (
     <form className="question-form" onSubmit={handleSubmit}>
-      <div class="input-control">
+      <div className="input-control">
         <textarea
             type="text"
             placeholder="Type here to ask a question..."
-            class="input-large"
+            className="input-large"
             autoFocus="autoFocus"
             value={text}
             onChange={(e) => setText(e.target.value)} //TODO: Throttle
         />
       </div>
 
-      <button class="btn-info btn-large btn-animated w-100" type="submit">Ask Question</button>
+      <button className="btn-info btn-large btn-animated w-100" type="submit">Ask Question</button>
     </form>
   );
 };
