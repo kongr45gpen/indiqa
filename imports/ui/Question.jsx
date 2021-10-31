@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 
 export const Question = ({ question }) => {
     const [voted, setVoted] = useState(false);
 
+    const localStorageId = 'question-' + question._id + '-';
+
+    useEffect(() => {
+        const localVoted = localStorage.getItem(localStorageId + 'voted');
+        if (localVoted) {
+            setVoted(true);
+        }
+    }, []);
+
     const handleVote = e => {
         e.preventDefault();
 
-        Meteor.call('questions.vote', question._id);
-
-        setVoted(!voted);
+        if (!voted) {
+            Meteor.call('questions.vote', question._id);
+            setVoted(true);
+            localStorage.setItem(localStorageId + 'voted', true);
+        }
     };
 
     return (

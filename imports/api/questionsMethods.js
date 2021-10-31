@@ -25,7 +25,7 @@ Meteor.methods({
     // }
 
     QuestionsCollection.update(taskId, {
-        $set: {
+        $inc: {
           votes: 1
         }
     });
