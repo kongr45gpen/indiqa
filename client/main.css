@@ -25,3 +25,11 @@ textarea {
 .frame {
   box-shadow: 0 .2rem 1.25rem 0 rgba(27,30,36,.22) !important;
 }
+
+.presenter__question {
+  font-size: 15pt;
+}
+
+.presenter__question .question__text {
+  font-size: 20pt;
+}

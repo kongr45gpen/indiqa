@@ -15,6 +15,7 @@ import {
   Link
 } from "react-router-dom";
 import { Admin } from './Admin.jsx';
+import { Presenter } from './Presenter.jsx';
 
 export const App = () => {
   const onlyApprovedFilter = {
@@ -37,6 +38,11 @@ export const App = () => {
         <Route path="/admin">
           <div className="p-1">
             <Admin />
+          </div>
+        </Route>
+        <Route path="/presenter">
+          <div className="content">
+            <Presenter />
           </div>
         </Route>
         <Route path="/">
