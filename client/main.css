@@ -1,4 +1,15 @@
-body {
-  padding: 10px;
-  font-family: sans-serif;
+.question__text {
+  font-size: 13pt;
+}
+
+.question__vote {
+  cursor: pointer;
+}
+
+.question__vote .icon {
+  transition: 0.1s;
+}
+
+.question__vote:hover .icon {
+  transform: scale(1.3);
 }

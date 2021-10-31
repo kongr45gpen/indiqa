@@ -24,7 +24,7 @@ Meteor.methods({
     //   throw new Meteor.Error('Not authorized.');
     // }
 
-    TasksCollection.update(taskId, {
+    QuestionsCollection.update(taskId, {
         $set: {
           votes: 1
         }
@@ -39,7 +39,7 @@ Meteor.methods({
     //   throw new Meteor.Error('Not authorized.');
     // }
 
-    TasksCollection.update(taskId, {
+    QuestionsCollection.update(taskId, {
       $set: {
         votes: 1
       }

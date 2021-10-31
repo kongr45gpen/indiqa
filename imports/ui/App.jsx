@@ -13,9 +13,9 @@ export const App = () => {
         <h3>Ask your questions here!</h3>
         <QuestionForm />
         <h3>See other questions</h3>
-        <ul>
+        <section>
           { questions.map(question => <Question key={ question._id} question={ question } />)}
-        </ul>
+        </section>
       </div>
     </section>
   );
