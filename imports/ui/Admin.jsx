@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { useTracker } from 'meteor/react-meteor-data';
 import { AdminQuestion } from './AdminQuestion';
@@ -23,6 +23,12 @@ export const Admin = () => {
   }).fetch());
 
   const user = useTracker(() => Meteor.user());
+
+  useEffect(() => {
+    if (Notification.permission !== 'granted') {
+      Notification.requestPermission();
+    }
+  }, []);
 
   return user ? (
       <Fragment>
