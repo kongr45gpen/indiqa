@@ -27,9 +27,35 @@ textarea {
 }
 
 .presenter__question {
-  font-size: 15pt;
+  font-size: 17pt;
 }
 
 .presenter__question .question__text {
   font-size: 20pt;
+}
+
+.presenter__spotlight .question__text {
+  font-size: 22pt;
+}
+
+.presenter__actions div {
+  cursor: pointer;
+  font-size: 12pt;
+  padding: 0.3rem;
+}
+
+.presenter__actions i {
+  transition: 0.1s;
+}
+
+.presenter__actions div:hover i.fa-lightbulb {
+  color: #fab633;
+}
+
+.presenter__actions div:hover i.fa-check {
+  color: #0dd157;
+}
+
+.presenter__actions div:hover i.fa-caret-down {
+  color: #fb4143;
 }
