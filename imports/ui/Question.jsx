@@ -32,7 +32,7 @@ export const Question = ({ question }) => {
             <div className={`frame__body p-0 ${question.status == "answered" ? "text-gray-700" : ""}`}>
                 <div class="u-pull-right m-3 question__vote" onClick={handleVote}>
                     <span class="icon subtitle">
-                        <i class="fa-wrapper fa-heart" className={`fa-wrapper fa-heart ${voted ? "fas text-danger" : "far"}`}></i>
+                        <i className={`fa-wrapper fa-heart ${voted ? "fas text-danger" : "far"}`}></i>
                     </span>
                     { question.votes }
                 </div>

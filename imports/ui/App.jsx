@@ -18,7 +18,7 @@ import { Admin } from './Admin.jsx';
 
 export const App = () => {
   const onlyApprovedFilter = {
-    status: { $in: [ 'approved', 'answered', 'new' ]}
+    status: { $in: [ 'approved', 'answered', 'spotlight' ]}
   }
 
   const questions = useTracker(() => QuestionsCollection.find(onlyApprovedFilter, {
@@ -35,7 +35,7 @@ export const App = () => {
           </div>
         </Route>
         <Route path="/admin">
-          <div className="content">
+          <div className="p-1">
             <Admin />
           </div>
         </Route>

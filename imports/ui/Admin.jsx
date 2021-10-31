@@ -42,6 +42,13 @@ export const Admin = () => {
               { answeredQuestions.map(question => <AdminQuestion key={ question._id} question={ question } />)}
             </div>
           </div>
+          <div>
+            <h3 className=""><i class="fas fa-wrapper fa-crossmark"></i> Rejected</h3>
+            <div class="row">
+              { rejectedQuestions.map(question => <div className="col-4">
+                <AdminQuestion key={ question._id} question={ question } /></div>)}
+            </div>
+          </div>
         </section>
       </Fragment>
     ) : (

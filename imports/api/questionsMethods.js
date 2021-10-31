@@ -5,10 +5,6 @@ Meteor.methods({
   'questions.insert'(text) {
     check(text, String);
 
-    // if (!this.userId) {
-    //   throw new Meteor.Error('Not authorized.');
-    // }
-
     QuestionsCollection.insert({
       text,
       createdAt: new Date,
@@ -17,31 +13,40 @@ Meteor.methods({
     })
   },
 
-  'questions.vote'(taskId) {
-    check(taskId, String);
+  'questions.vote'(questionId) {
+    check(questionId, String);
 
-    // if (!this.userId) {
-    //   throw new Meteor.Error('Not authorized.');
-    // }
-
-    QuestionsCollection.update(taskId, {
+    QuestionsCollection.update(questionId, {
         $inc: {
           votes: 1
         }
     });
   },
 
-  'tasks.setIsChecked'(taskId, isChecked) {
-    check(taskId, String);
-    check(isChecked, Boolean);
+  'questions.setStatus'(questionId, newStatus) {
+    check(questionId, String);
 
-    // if (!this.userId) {
-    //   throw new Meteor.Error('Not authorized.');
-    // }
+    if (!this.userId) {
+      throw new Meteor.Error('Not authorized.');
+    }
 
-    QuestionsCollection.update(taskId, {
+    QuestionsCollection.update(questionId, {
       $set: {
-        votes: 1
+        status: newStatus
+      }
+    });
+  },
+
+  'questions.setResponse'(questionId, response) {
+    check(questionId, String);
+
+    if (!this.userId) {
+      throw new Meteor.Error('Not authorized.');
+    }
+
+    QuestionsCollection.update(questionId, {
+      $set: {
+        response
       }
     });
   }
