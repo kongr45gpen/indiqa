@@ -8,12 +8,15 @@ export const App = () => {
   const questions = useTracker(() => QuestionsCollection.find({}).fetch());
 
   return (
-    <div>
-      <h1>Welcome to Meteor!</h1>
-      <ul>
-        { questions.map(question => <Question key={ question._id} question={ question } />)}
-      </ul>
-      <QuestionForm />
-    </div>
+    <section>
+      <div class="content">
+        <h3>Ask your questions here!</h3>
+        <QuestionForm />
+        <h3>See other questions</h3>
+        <ul>
+          { questions.map(question => <Question key={ question._id} question={ question } />)}
+        </ul>
+      </div>
+    </section>
   );
 };
