@@ -4,10 +4,9 @@ import { toast } from 'react-toastify';
 import { useTracker } from 'meteor/react-meteor-data';
 import { QuestionsCollection } from '../db/QuestionsCollection';
 import { PresenterQuestion } from './PresenterQuestion';
+import FlipMove from 'react-flip-move';
 
 export const Presenter = () => {
-
-
   const { approvedQuestions } = useTracker(() => {
     Meteor.subscribe('questions.public');
 
@@ -24,7 +23,9 @@ export const Presenter = () => {
   return user ? (
       <Fragment>
         <section>
-          { approvedQuestions.map(question => <PresenterQuestion key={ question._id} question={ question } />)}
+          <FlipMove>
+            { approvedQuestions.map(question => <PresenterQuestion key={ question._id} question={ question } />)}
+          </FlipMove>
         </section>
       </Fragment>
     ) : (

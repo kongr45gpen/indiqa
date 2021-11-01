@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, forwardRef } from 'react';
 import { questionMachine } from "../state/questionState";
 import { QuestionsCollection } from '../db/QuestionsCollection';
 
-export const PresenterQuestion = ({ question }) => {
+export const PresenterQuestion = forwardRef(({ question }, ref) => {
     const handleTransition = transition => {
         const nextStatus = questionMachine.states[question.status].on[transition].target;
 
@@ -14,7 +14,7 @@ export const PresenterQuestion = ({ question }) => {
     }
 
     return (
-        <div class="frame my-4 w-100 presenter__question">
+        <div ref={ ref } class="frame my-4 w-100 presenter__question">
             <div className={`frame__body p-0 ${question.status == "spotlight" ? "bg-yellow-200 presenter__spotlight" : ""}`}>
                 <div className="u-pull-right m-5">
                     <div className="text-purple-700">
@@ -47,4 +47,4 @@ export const PresenterQuestion = ({ question }) => {
             </div>
         </div>
     )
-}
+})
