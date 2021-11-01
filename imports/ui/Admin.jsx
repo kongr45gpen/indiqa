@@ -6,14 +6,15 @@ import { AdminQuestion } from "./AdminQuestion"
 import { QuestionsCollection } from "../db/QuestionsCollection"
 
 export const Admin = () => {
+  let readyt = false;
+  const handler = Meteor.subscribe("questions.admin", () => { this.readyt = true })
+
   const {
     newQuestions,
     approvedQuestions,
     answeredQuestions,
     rejectedQuestions,
   } = useTracker(() => {
-    const handler = Meteor.subscribe("questions.admin")
-
     const newQuestions = QuestionsCollection.find(
       { status: { $in: ["new"] } },
       {
@@ -52,12 +53,29 @@ export const Admin = () => {
       rejectedQuestions,
     }
   })
-
   const user = useTracker(() => Meteor.user())
 
   useEffect(() => {
-    if (Notification.permission !== "granted") {
-      Notification.requestPermission()
+    if (Notification.permission !== "granted" && Notification.permission !== "denied") {
+      Notification.requestPermission();
+    }
+
+    const observer = QuestionsCollection.find(
+      { status: { $in: ["new"] } },
+    ).observeChanges({
+      added(id, question) {
+        if (handler.ready()) {
+          if (Notification.permission === "granted") {
+            new Notification("New IndiQA question!", {
+              body: question.text,
+            })
+          }
+        }
+      }
+    })
+
+    return function cleanup() {
+      observer.stop();
     }
   }, [])
 
