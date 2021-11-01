@@ -59,3 +59,11 @@ textarea {
 .presenter__actions div:hover i.fa-caret-down {
   color: #fb4143;
 }
+
+.presenter__question .frame__body {
+  transition: 0.2s;
+}
+
+.presenter__question .question__text {
+  transition: 0.05s;
+}
