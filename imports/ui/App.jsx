@@ -25,9 +25,7 @@ export const App = () => {
       { user && <Header /> }
       <Switch>
         <Route path="/login">
-          <div className="content">
-            <LoginForm />
-          </div>
+          <LoginForm />
         </Route>
         <Route path="/admin">
           <div className="p-1">

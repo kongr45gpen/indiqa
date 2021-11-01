@@ -2,18 +2,15 @@ import React, { useState } from "react"
 import { NavLink } from "react-router-dom"
 
 export const Header = () => {
+  const logout = () => Meteor.logout();
+
   return (
-    <nav class="header u-unselectable header-animated">
+    <nav class="header u-relative u-unselectable header-animated">
       <div class="header-brand">
         <div class="nav-item no-hover">
           <a>
-            <h6 class="title">IndiQA</h6>
+            <h6 className="title">IndiQA</h6>
           </a>
-        </div>
-        <div class="nav-item nav-btn" id="header-btn">
-          <span></span>
-          <span></span>
-          <span></span>
         </div>
       </div>
       <div class="header-nav" id="header-menu">
@@ -27,6 +24,13 @@ export const Header = () => {
           <NavLink to="/admin" className="nav-item" activeClassName="active">
             <span>Admin</span>
           </NavLink>
+          <div className="nav-item text-center">
+                <a href="#" title="Log out" onClick={logout}>
+                    <span className="icon">
+                    <i className="fa-wrapper fas fa-sign-out-alt"></i>
+                    </span>
+                </a>
+            </div>
         </div>
       </div>
     </nav>
