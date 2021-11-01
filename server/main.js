@@ -2,7 +2,8 @@ import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { QuestionsCollection } from '../imports/db/QuestionsCollection';
 import { randomBytes } from 'crypto';
-import '/imports/api/questionsMethods'
+import '/imports/api/questionsMethods';
+import '/imports/api/questionsPublications';
 
 const insertQuestion = questionText => QuestionsCollection.insert({ text: questionText });
 

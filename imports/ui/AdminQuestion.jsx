@@ -21,10 +21,6 @@ export const AdminQuestion = ({ question }) => {
   const handleResponse = e => {
     e.preventDefault();
 
-    if (!text) {
-        text = null;
-    }
-
     Meteor.call('questions.setResponse', question._id, text, (err, res) => {
         if (err) {
             toast.error("Error submitting response: " + err);

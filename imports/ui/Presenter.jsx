@@ -6,20 +6,28 @@ import { QuestionsCollection } from '../db/QuestionsCollection';
 import { PresenterQuestion } from './PresenterQuestion';
 
 export const Presenter = () => {
-  const spotlightQuestions = useTracker(() => QuestionsCollection.find({ status: { $in: [ 'spotlight' ]} }, {
-    sort: [['votes', 'desc'], ['createdAt', 'asc']]
-  }).fetch());
 
-  const approvedQuestions = useTracker(() => QuestionsCollection.find({ status: { $in: [ 'approved' ]} }, {
-    sort: [['votes', 'desc'], ['createdAt', 'asc']]
-  }).fetch());
+
+  const { spotlightQuestions, approvedQuestions } = useTracker(() => {
+    Meteor.subscribe('questions.public');
+
+    const spotlightQuestions = QuestionsCollection.find({ status: { $in: [ 'spotlight' ]} }, {
+      sort: [['votes', 'desc'], ['createdAt', 'asc']]
+    }).fetch();
+
+    const approvedQuestions = QuestionsCollection.find({ status: { $in: [ 'approved' ]} }, {
+      sort: [['votes', 'desc'], ['createdAt', 'asc']]
+    }).fetch();
+
+    return { spotlightQuestions, approvedQuestions };
+  });
 
 
   const user = useTracker(() => Meteor.user());
 
   return user ? (
       <Fragment>
-        { spotlightQuestions && (
+        { spotlightQuestions.length !== 0 && (
           <section>
             { spotlightQuestions.map(question => <PresenterQuestion key={ question._id} question={ question } />)}
             <div class="divider my-10"></div>
