@@ -67,3 +67,11 @@ textarea {
 .presenter__question .question__text {
   transition: 0.05s;
 }
+
+.header .nav-item > span {
+  padding: .5rem 1rem;
+}
+.nav-item > span {
+  align-items: center;
+  display: flex;
+}

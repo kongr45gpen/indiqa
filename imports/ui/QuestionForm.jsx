@@ -15,7 +15,7 @@ export const QuestionForm = () => {
             toast.error("Error submitting question: " + err);
         } else {
             setText("");
-            toast.success("Your question has been sumbitted! A moderator will approve it shortly...");
+            toast.success("Your question has been sumbitted! A moderator will approve it shortly.");
         }
     });
 
