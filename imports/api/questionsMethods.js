@@ -32,13 +32,15 @@ Meteor.methods({
 
     if (newStatus == "spotlight") {
         // Only one question should be spotlighted by the presenter
+        // TODO: Make this more elegant
         const spotLightedQuestions = QuestionsCollection.find({ status: {$eq: "spotlight"}}, {}).fetch();
-
-        QuestionsCollection.update(questionId, {
-            $set: {
-              status: "approved"
-            }
-        });
+          spotLightedQuestions.forEach((question) => {
+            QuestionsCollection.update(question, {
+              $set: {
+                status: "approved"
+              }
+          });
+        })
     }
 
     QuestionsCollection.update(questionId, {

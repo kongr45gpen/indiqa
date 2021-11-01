@@ -30,7 +30,7 @@ export const PresenterQuestion = ({ question }) => {
                         </div>
 }
 
-                        <div onClick={ handleTransition.bind(this, "ANSWERED") }>
+                        <div onClick={ handleTransition.bind(this, "ANSWER") }>
                             <i className={`fa-wrapper fa-check fa-fw fas`}></i>
                         </div>
 
