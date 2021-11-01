@@ -1,7 +1,7 @@
-import React, { useEffect } from "react"
+import React, { useEffect, forwardRef } from "react"
 import { useState } from "react"
 
-export const Question = ({ question }) => {
+export const Question = forwardRef(({ question }, ref) => {
   const [voted, setVoted] = useState(false)
 
   const localStorageId = "question-" + question._id + "-"
@@ -27,7 +27,7 @@ export const Question = ({ question }) => {
   }
 
   return (
-    <div class="frame my-4">
+    <div class="frame my-4" ref={ref}>
       <div
         className={`frame__body p-0 ${
           question.status == "answered" ? "text-gray-700" : ""
@@ -60,4 +60,4 @@ export const Question = ({ question }) => {
       </div>
     </div>
   )
-}
+})

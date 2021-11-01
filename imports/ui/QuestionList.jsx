@@ -3,6 +3,7 @@ import { useTracker } from "meteor/react-meteor-data"
 import { QuestionsCollection } from "../db/QuestionsCollection.js"
 import { Question } from "./Question.jsx"
 import { QuestionForm } from "./QuestionForm"
+import FlipMove from 'react-flip-move';
 
 export const QuestionList = () => {
   const onlyApprovedFilter = {
@@ -28,9 +29,11 @@ export const QuestionList = () => {
         <QuestionForm />
         <h3>Vote on other questions</h3>
         <section>
-          {questions.map((question) => (
-            <Question key={question._id} question={question} />
-          ))}
+          <FlipMove>
+            {questions.map((question) => (
+              <Question key={question._id} question={question} />
+            ))}
+          </FlipMove>
         </section>
       </div>
     </section>
