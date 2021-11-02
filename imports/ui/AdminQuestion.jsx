@@ -60,7 +60,7 @@ export const AdminQuestion = ({ question }) => {
             return (<button key={ event } className={`btn-${state.color} btn-small`} onClick={handleTransition.bind(this, event)}>{ event }</button>);
           })}
       </div>
-      {(question.status != "new") &&
+      {(question.status != "new" && question.status != "rejected") &&
       (
         <div class="card__footer">
           <div class="u-text-center">
