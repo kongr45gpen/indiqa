@@ -44,6 +44,7 @@ export const Question = forwardRef(({ question }, ref) => {
           {question.votes}
         </div>
         <div class="p-3 question__text">{question.text}</div>
+        <p className="p-2 u-text-right">{question.createdAt.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}</p>
         {question.response && (
           <div class="frame__footer bg-green-100">
             <div class="frame__subtitle mb-0">
