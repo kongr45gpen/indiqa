@@ -52,6 +52,7 @@ export const AdminQuestion = ({ question }) => {
           </div>
         )}
         <p>{question.text}</p>
+        <p className="u-text-right">{question.createdAt.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}</p>
       </div>
       <div class="card__action-bar u-center">
           { Object.keys(questionMachine.states[question.status].on).map(event => {
