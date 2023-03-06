@@ -15,6 +15,7 @@ import { Admin } from './Admin.jsx';
 import { Presenter } from './Presenter.jsx';
 import { QuestionList } from './QuestionList.jsx';
 import { Header } from './Header.jsx';
+import { Streaming } from './Streaming.jsx';
 
 export const App = () => {
   const user = useTracker(() => Meteor.user());
@@ -36,6 +37,9 @@ export const App = () => {
           <div className="content">
             <Presenter />
           </div>
+        </Route>
+        <Route path="/streaming">
+          <Streaming /> 
         </Route>
         <Route path="/">
           <QuestionList />

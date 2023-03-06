@@ -68,6 +68,27 @@ textarea {
   transition: 0.05s;
 }
 
+.streaming__question {
+  margin: 5vw;
+  padding: 3vh 4vw;
+
+  font-size: 30pt;
+  font-weight: 600;
+
+  border-radius: 1vw;
+  width: 70vw;
+  margin-left: auto;
+  margin-right: auto;
+
+  position: absolute;
+  left: 15vw;
+  bottom: 5vh;
+
+  background-color: rgba(255,255,255,0.9);
+
+  box-shadow: 0 .2rem 1.25rem 0 rgba(27,30,36,.5) !important;
+}
+
 .header .nav-item > span {
   padding: .5rem 1rem;
 }
@@ -77,4 +98,8 @@ textarea {
 }
 .date__main{
   margin-bottom: -1rem !important;
+}
+
+.content {
+  width: 80%;
 }

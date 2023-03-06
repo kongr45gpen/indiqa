@@ -68,13 +68,13 @@ export const AdminQuestion = ({ question }) => {
             <form data-id={ question.id } onSubmit={handleResponse}>
               <textarea
                 rows="1"
-                className="input-xsmall m-0 w-80 question__response_area"
+                className="input-xsmall m-0 w-80p question__response_area"
                 value={ text }
                 onChange={(e) => setText(e.target.value)} //TODO: Throttle
               />
               <button
                 type="submit"
-                className="btn-info outline btn-small w-80 p-0"
+                className="btn-info outline btn-small w-80p p-0"
               >
                 Set response
               </button>

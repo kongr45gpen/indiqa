@@ -60,7 +60,7 @@ export const LoginForm = () => {
           </div>
 
           <div class="form-section u-text-right">
-            <button type="submit" className="w-100">
+            <button type="submit" className="w-100p">
               Log In
             </button>
           </div>

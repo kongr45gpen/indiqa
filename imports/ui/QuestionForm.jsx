@@ -34,7 +34,7 @@ export const QuestionForm = () => {
         />
       </div>
 
-      <button className="btn-info btn-large btn-animated w-100" type="submit">Ask Question</button>
+      <button className="btn-info btn-large btn-animated w-100p" type="submit">Ask Question</button>
     </form>
   );
 };

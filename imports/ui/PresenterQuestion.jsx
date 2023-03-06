@@ -14,7 +14,7 @@ export const PresenterQuestion = forwardRef(({ question }, ref) => {
     }
 
     return (
-        <div ref={ ref } class="frame my-4 w-100 presenter__question">
+        <div ref={ ref } class="frame my-4 w-100p presenter__question">
             <div className={`frame__body p-0 ${question.status == "spotlight" ? "bg-yellow-200 presenter__spotlight" : ""}`}>
                 <div className="u-pull-right m-5">
                     <div className="text-purple-700">
