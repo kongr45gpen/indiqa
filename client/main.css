@@ -159,7 +159,7 @@ textarea {
 }
 
 .streaming__transition-enter-active.streaming__logo {
-  animation: 0.7s 1 0.7s normal both streaming__slidein;
+  animation: 0.7s 1 normal both streaming__slidein;
   animation-timing-function: cubic-bezier(0.25, 0.1, 0.2, 1.0);
 }
 

@@ -21,14 +21,16 @@ export const Streaming = () => {
   return <div className="u-absolute u-top-0 w-screen h-screen">
     {
       <div className="streaming__container">
-        <CSSTransition in={!!spotlighted} timeout={1400} classNames="streaming__transition">
-          <aside className="streaming__logo"></aside>
-        </CSSTransition>
+        <SwitchTransition>
+          <CSSTransition in={!!spotlighted} timeout={700} key={spotlighted ? spotlighted._id : 0} classNames="streaming__transition">
+            <aside className="streaming__logo"></aside>
+          </CSSTransition>
+        </SwitchTransition>
         <SwitchTransition>
           <CSSTransition in={!!spotlighted} timeout={700} classNames="streaming__transition"
             key={spotlighted ? spotlighted._id : 0}>
             {spotlighted ?
-              <div className={`streaming__question ` + ((spotlighted.text.length > 80) ? "streaming__question_wordy" : "") } id={spotlighted._id}>
+              <div className={`streaming__question ` + ((spotlighted.text.length > 80) ? "streaming__question_wordy" : "")} id={spotlighted._id}>
                 <span>{spotlighted.text}</span>
               </div> : <div></div>
             }
