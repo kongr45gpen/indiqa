@@ -175,3 +175,14 @@ textarea {
 .content {
   width: 80%;
 }
+
+.card__action-bar {
+  display: grid;
+  grid-template-columns: 10% 1fr 1fr 1fr 10%;
+  align-items: center;
+}
+
+.admin__question_time {
+  text-align: right;
+  grid-column: 5;
+}

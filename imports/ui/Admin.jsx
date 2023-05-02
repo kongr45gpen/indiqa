@@ -82,7 +82,11 @@ export const Admin = () => {
   return user ? (
     <Fragment>
       <section>
-        <p class="lead">Logged in as {user.username}</p>
+        <div class="tag-container u-center">
+          <div class="tag">Logged in as</div>
+          <div class="tag">{ user.username }</div>
+        </div>
+        
         <div class="row">
           <div class="col-4">
             <h3 className="u-text-center">
