@@ -200,3 +200,7 @@ textarea {
   text-align: right;
   grid-column: 5;
 }
+
+.vertical-middle {
+  vertical-align: middle;
+}

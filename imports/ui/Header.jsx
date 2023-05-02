@@ -38,6 +38,9 @@ export const Header = () => {
           <NavLink to="/admin" className="nav-item" activeClassName="active">
             <span>Admin</span>
           </NavLink>
+          <NavLink to="/admin/sessions" className="nav-item" activeClassName="active">
+            <span>Sessions</span>
+          </NavLink>
           <div className="nav-item text-center">
             <a href="#" title="Log out" onClick={logout}>
               <span className="icon">

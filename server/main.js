@@ -4,6 +4,8 @@ import { QuestionsCollection } from '../imports/db/QuestionsCollection';
 import { randomBytes } from 'crypto';
 import '/imports/api/questionsMethods';
 import '/imports/api/questionsPublications';
+import '/imports/api/sessionsMethods';
+import '/imports/api/sessionsPublications';
 
 const insertQuestion = questionText => QuestionsCollection.insert({ text: questionText });
 

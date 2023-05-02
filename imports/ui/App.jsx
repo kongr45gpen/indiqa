@@ -12,6 +12,7 @@ import {
   Link
 } from "react-router-dom";
 import { Admin } from './Admin.jsx';
+import { SessionAdmin } from './SessionAdmin.jsx';
 import { Presenter } from './Presenter.jsx';
 import { QuestionList } from './QuestionList.jsx';
 import { Header } from './Header.jsx';
@@ -27,6 +28,11 @@ export const App = () => {
       <Switch>
         <Route path="/login">
           <LoginForm />
+        </Route>
+        <Route path="/admin/sessions">
+          <div className="p-3">
+            <SessionAdmin />
+          </div>
         </Route>
         <Route path="/admin">
           <div className="p-1">
