@@ -1,5 +1,6 @@
 import { check } from 'meteor/check';
 import { QuestionsCollection } from '../db/QuestionsCollection';
+import { SessionsCollection } from '../db/SessionsCollection';
 
 Meteor.methods({
   'questions.insert'(text) {
@@ -9,7 +10,8 @@ Meteor.methods({
       text,
       createdAt: new Date,
       status: "new",
-      votes: 0
+      votes: 0,
+      session: SessionsCollection.getActiveSession()._id
     })
   },
 

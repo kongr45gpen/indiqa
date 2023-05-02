@@ -1,7 +1,11 @@
 import { Meteor } from "meteor/meteor"
 import React, { useState, Fragment, useEffect } from "react"
+import { ErrorBoundary } from "react-error-boundary"
 import { toast } from "react-toastify"
+import { QuestionsCollection } from "../db/QuestionsCollection"
 import { SessionsCollection } from "../db/SessionsCollection"
+import { useTracker } from "meteor/react-meteor-data"
+
 
 export const SessionAdminSession = ({ session }) => {
     const [editing, setEditing] = useState(false);
@@ -56,6 +60,11 @@ export const SessionAdminSession = ({ session }) => {
           });
     }
 
+    const { questionCount } = useTracker(() => {
+        return {
+            questionCount: QuestionsCollection.find({ session: session._id }).count()
+        };
+    });
 
     return <tr>
         {editing ?
@@ -72,11 +81,16 @@ export const SessionAdminSession = ({ session }) => {
         <td className="vertical-middle"><div className="form-ext-control pl-0">
             <label className="form-ext-toggle__label">
                 <div className="form-ext-toggle mx-auto">
-                    <input name="toggleCheckbox" type="checkbox" className="form-ext-input" checked={session.active} onClick={handleActive} />
+                    <input name="toggleCheckbox" type="checkbox" className="form-ext-input" checked={session.active} onClick={handleActive} onChange={() => {}} />
                     <div className="form-ext-toggle__toggler"><i></i></div>
                 </div>
             </label>
         </div></td>
+        <td className="vertical-middle">
+            <ErrorBoundary>
+                { questionCount }
+            </ErrorBoundary>
+        </td>
         <td className="vertical-middle">
             <a className="text-danger" href="" onClick={handleDelete}>
                 <i className="fas fa-trash-alt"></i>

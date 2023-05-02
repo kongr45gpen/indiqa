@@ -6,7 +6,8 @@ import { SessionsCollection } from "../db/SessionsCollection"
 import { SessionAdminSession } from "./SessionAdminSession"
 
 export const SessionAdmin = () => {
-  const handler = Meteor.subscribe("sessions.admin", () => { })
+  Meteor.subscribe("sessions.admin")
+  Meteor.subscribe("questions.admin")
 
   const handleNewSession = e => {
     e.preventDefault();
@@ -30,8 +31,6 @@ export const SessionAdmin = () => {
       sort: [['name', 'asc']]
     }).fetch()
 
-    console.log(sessions);
-
     return {
       sessions
     }
@@ -53,6 +52,7 @@ export const SessionAdmin = () => {
             <tr>
               <th>Session Name</th>
               <th>Active</th>
+              <th>Count</th>
               <th>Actions</th>
             </tr>
           </thead>

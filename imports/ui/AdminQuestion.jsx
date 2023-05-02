@@ -1,6 +1,11 @@
+"use client";
+
 import React, { useState, Fragment, useEffect } from "react"
 import { questionMachine } from "../state/questionState";
 import { toast } from 'react-toastify';
+import { SessionsCollection } from "../db/SessionsCollection";
+import { ErrorBoundary } from "react-error-boundary";
+import { useTracker } from "meteor/react-meteor-data"
 
 
 export const AdminQuestion = ({ question }) => {
@@ -40,10 +45,25 @@ export const AdminQuestion = ({ question }) => {
     });
   }
 
+  const session = useTracker(() => {
+    if (!question.session) {
+      return null;
+    }
+
+    const sessionObject = SessionsCollection.findOne({ _id: question.session });
+
+    console.log(sessionObject);
+
+    return sessionObject;
+  });
+
   return (
     <div className={`card ${bg}`}>
-      <div className="content m-2">
-        <p>{question.text}</p>
+      <div className="content p-2 m-0">
+        <ErrorBoundary fallback={<span />}>
+          { session && <div className="tag tag--dark tag--xs mr-1">{ session.name }</div> }
+        </ErrorBoundary>
+        {question.text}
       </div>
       <div className="card__action-bar mx-2">
         <div className="admin__question_votes">
@@ -58,24 +78,24 @@ export const AdminQuestion = ({ question }) => {
           return (<button key={event} className={`btn-${state.color} btn--xs`} onClick={handleTransition.bind(this, event)}>{event}</button>);
         })}
         <p className="admin__question_time">{question.createdAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
-        </div>
+      </div>
       {(question.status != "new" && question.status != "rejected") &&
         (
-              <form data-id={question.id} onSubmit={handleResponse} className="mx-4 mb-1 u-flex u-items-stretch u-gap-1">
-                <textarea
-                  rows="1"
-                  className="input-xsmall m-0 p-1 text-sm u-flex-grow-1 question__response_area"
-                  value={text}
-                  placeholder="Response..."
-                  onChange={(e) => setText(e.target.value)} //TODO: Throttle
-                />
-                <button
-                  type="submit"
-                  className="btn-info outline btn--sm p-0 m-0"
-                >
-                  <i className={`fas fa-paper-plane`}></i>
-                </button>
-              </form>
+          <form data-id={question.id} onSubmit={handleResponse} className="mx-4 mb-1 u-flex u-items-stretch u-gap-1">
+            <textarea
+              rows="1"
+              className="input-xsmall m-0 p-1 text-sm u-flex-grow-1 question__response_area"
+              value={text}
+              placeholder="Response..."
+              onChange={(e) => setText(e.target.value)} //TODO: Throttle
+            />
+            <button
+              type="submit"
+              className="btn-info outline btn--sm p-0 m-0"
+            >
+              <i className={`fas fa-paper-plane`}></i>
+            </button>
+          </form>
         )}
     </div>
   )

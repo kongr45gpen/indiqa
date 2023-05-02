@@ -4,26 +4,35 @@ import { toast } from "react-toastify"
 import { useTracker } from "meteor/react-meteor-data"
 import { AdminQuestion } from "./AdminQuestion"
 import { QuestionsCollection } from "../db/QuestionsCollection"
+import { SessionsCollection } from "../db/SessionsCollection"
 
 export const Admin = () => {
-  let readyt = false;
-  const handler = Meteor.subscribe("questions.admin", () => { this.readyt = true })
+  const handler = Meteor.subscribe("questions.admin");
+  Meteor.subscribe("sessions.admin");
 
   const {
     newQuestions,
     approvedQuestions,
     answeredQuestions,
     rejectedQuestions,
+    currentSession,
   } = useTracker(() => {
+    const activeSessions = SessionsCollection.find({ active: true }).fetch()
+      .map(s => s._id);
+
+    const sessionFilter = {
+      $or: [{ session: null }, { session: { $in: activeSessions } }],
+    }
+
     const newQuestions = QuestionsCollection.find(
-      { status: { $in: ["new"] } },
+      { status: { $in: ["new"] }, ...sessionFilter },
       {
         sort: [["createdAt", "asc"]],
       }
     ).fetch()
 
     const approvedQuestions = QuestionsCollection.find(
-      { status: { $in: ["approved", "spotlight"] } },
+      { status: { $in: ["approved", "spotlight"] }, ...sessionFilter },
       {
         sort: [
           ["votes", "desc"],
@@ -33,24 +42,27 @@ export const Admin = () => {
     ).fetch()
 
     const answeredQuestions = QuestionsCollection.find(
-      { status: { $in: ["answered"] } },
+      { status: { $in: ["answered"] }, ...sessionFilter },
       {
         sort: [["answeredAt", "asc"]],
       }
     ).fetch()
 
     const rejectedQuestions = QuestionsCollection.find(
-      { status: { $in: ["rejected"] } },
+      { status: { $in: ["rejected"] }, ...sessionFilter },
       {
         sort: [["createdAt", "asc"]],
       }
     ).fetch()
+
+    const currentSession = SessionsCollection.getActiveSession();
 
     return {
       newQuestions,
       approvedQuestions,
       answeredQuestions,
       rejectedQuestions,
+      currentSession
     }
   })
   const user = useTracker(() => Meteor.user())
@@ -84,9 +96,13 @@ export const Admin = () => {
       <section>
         <div className="tag-container u-center">
           <div className="tag">Logged in as</div>
-          <div className="tag">{ user.username }</div>
+          <div className="tag">{user.username}</div>
+          {currentSession && <Fragment>
+            <div className="tag">Current session:</div>
+            <div className="tag tag--black">{currentSession.name}</div>
+          </Fragment>}
         </div>
-        
+
         <div className="row">
           <div className="col-4">
             <h3 className="u-text-center">

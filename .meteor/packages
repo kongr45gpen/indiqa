@@ -22,3 +22,4 @@ react-meteor-data       # React higher-order component for reactively tracking M
 dev-error-overlay
 babrahams:accounts-ldap
 accounts-password
+peerlibrary:reactive-publish

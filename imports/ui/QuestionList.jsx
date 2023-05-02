@@ -1,6 +1,6 @@
 import React from "react"
 import { useTracker } from "meteor/react-meteor-data"
-import { QuestionsCollection } from "../db/QuestionsCollection.js"
+import { QuestionsCollection, questionsWithSession } from "../db/QuestionsCollection.js"
 import { Question } from "./Question.jsx"
 import { QuestionForm } from "./QuestionForm"
 import FlipMove from 'react-flip-move';
@@ -8,10 +8,11 @@ import FlipMove from 'react-flip-move';
 export const QuestionList = () => {
   const onlyApprovedFilter = {
     status: { $in: ["approved", "answered", "spotlight"] },
+    ...questionsWithSession()
   }
 
   const questions = useTracker(() => {
-    const handler = Meteor.subscribe("questions.public");
+    Meteor.subscribe("questions.public");
 
     return QuestionsCollection.find(onlyApprovedFilter, {
       sort: [
