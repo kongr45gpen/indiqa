@@ -82,31 +82,31 @@ export const Admin = () => {
   return user ? (
     <Fragment>
       <section>
-        <div class="tag-container u-center">
-          <div class="tag">Logged in as</div>
-          <div class="tag">{ user.username }</div>
+        <div className="tag-container u-center">
+          <div className="tag">Logged in as</div>
+          <div className="tag">{ user.username }</div>
         </div>
         
-        <div class="row">
-          <div class="col-4">
+        <div className="row">
+          <div className="col-4">
             <h3 className="u-text-center">
-              <i class="far fa-wrapper fa-plus-square"></i> New
+              <i className="far fa-wrapper fa-plus-square"></i> New
             </h3>
             {newQuestions.map((question) => (
               <AdminQuestion key={question._id} question={question} />
             ))}
           </div>
-          <div class="col-4">
+          <div className="col-4">
             <h3 className="u-text-center">
-              <i class="fas fa-wrapper fa-check"></i> Approved
+              <i className="fas fa-wrapper fa-check"></i> Approved
             </h3>
             {approvedQuestions.map((question) => (
               <AdminQuestion key={question._id} question={question} />
             ))}
           </div>
-          <div class="col-4">
+          <div className="col-4">
             <h3 className="u-text-center">
-              <i class="fas fa-wrapper fa-volume-up"></i> Answered
+              <i className="fas fa-wrapper fa-volume-up"></i> Answered
             </h3>
             {answeredQuestions.map((question) => (
               <AdminQuestion key={question._id} question={question} />
@@ -115,9 +115,9 @@ export const Admin = () => {
         </div>
         <div>
           <h3 className="">
-            <i class="fas fa-wrapper fa-crossmark"></i> Rejected
+            <i className="fas fa-wrapper fa-crossmark"></i> Rejected
           </h3>
-          <div class="row">
+          <div className="row">
             {rejectedQuestions.map((question) => (
               <div key={question._id} className="col-4">
                 <AdminQuestion question={question} />

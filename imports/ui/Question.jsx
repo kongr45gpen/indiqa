@@ -27,13 +27,13 @@ export const Question = forwardRef(({ question }, ref) => {
   }
 
   return (
-    <div class="frame my-4" ref={ref}>
+    <div className="frame my-4" ref={ref}>
       <div
         className={`frame__body p-0 ${
           question.status == "answered" ? "text-gray-700" : ""
         }`}
       >
-        <div class="p-3 question__text">
+        <div className="p-3 question__text">
           <div className="u-pull-right question__vote" onClick={handleVote}>
           <span className="icon subtitle">
             <i
@@ -48,15 +48,15 @@ export const Question = forwardRef(({ question }, ref) => {
           <p className="date__main u-text-right">{question.createdAt.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}</p>
         </div>
         {question.response && (
-          <div class="frame__footer bg-green-100">
-            <div class="frame__subtitle mb-0">
+          <div className="frame__footer bg-green-100">
+            <div className="frame__subtitle mb-0">
               {question.status == "answered" && (
-                <span class="tag tag--success mr-1">
-                  <i class="fa-wrapper fa-check fas mr-1"></i>
+                <span className="tag tag--success mr-1">
+                  <i className="fa-wrapper fa-check fas mr-1"></i>
                   Answered
                 </span>
               )}
-              <span class="text-green-800">{question.response}</span>
+              <span className="text-green-800">{question.response}</span>
             </div>
           </div>
         )}

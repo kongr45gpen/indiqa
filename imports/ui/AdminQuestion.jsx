@@ -45,9 +45,9 @@ export const AdminQuestion = ({ question }) => {
       <div className="content m-2">
         <p>{question.text}</p>
       </div>
-      <div class="card__action-bar mx-2">
-        <div class="admin__question_votes">
-          <span class="icon subtitle">
+      <div className="card__action-bar mx-2">
+        <div className="admin__question_votes">
+          <span className="icon subtitle">
             <i className={`far fa-wrapper fa-heart`}></i>
           </span>
           {question.votes}

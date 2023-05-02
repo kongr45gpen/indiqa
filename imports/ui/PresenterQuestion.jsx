@@ -14,16 +14,16 @@ export const PresenterQuestion = forwardRef(({ question }, ref) => {
     }
 
     return (
-        <div ref={ ref } class="frame my-4 w-100p presenter__question">
+        <div ref={ ref } className="frame my-4 w-100p presenter__question">
             <div className={`frame__body p-0 ${question.status == "spotlight" ? "bg-yellow-200 presenter__spotlight" : ""}`}>
                 <div className="u-pull-right m-5">
                     <div className="text-purple-700">
-                        <span class="icon subtitle mr-1">
+                        <span className="icon subtitle mr-1">
                             <i className={`fa-wrapper fa-heart far`}></i>
                         </span>
                         { question.votes }
                     </div>
-                    <div class="u-text-right presenter__actions text-gray-700">
+                    <div className="u-text-right presenter__actions text-gray-700">
                         { question.status == "approved" &&
                         <div onClick={ handleTransition.bind(this, "SPOTLIGHT") }>
                             <i className={`fa-wrapper fa-lightbulb fa-fw far`}></i>
@@ -41,7 +41,7 @@ export const PresenterQuestion = forwardRef(({ question }, ref) => {
 }
                     </div>
                 </div>
-                <div class="p-5 question__text">
+                <div className="p-5 question__text">
                     { question.text }
                 </div>
             </div>

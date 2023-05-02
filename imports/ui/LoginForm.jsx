@@ -23,11 +23,11 @@ export const LoginForm = () => {
       <div className="content ">
         <form onSubmit={submit} className="login-form">
           <h4>IndiQA</h4>
-          <h6 class="font-alt">Administrator login form</h6>
+          <h6 className="font-alt">Administrator login form</h6>
 
-          <div class="form-section">
+          <div className="form-section">
             <label>Username</label>
-            <div class="input-control">
+            <div className="input-control">
               <input
                 type="text"
                 placeholder="Username"
@@ -36,15 +36,15 @@ export const LoginForm = () => {
                 required
                 onChange={(e) => setUsername(e.target.value)}
               />
-              <span class="icon">
-                <i class="far fa-wrapper fa-user small"></i>
+              <span className="icon">
+                <i className="far fa-wrapper fa-user small"></i>
               </span>
             </div>
           </div>
 
-          <div class="form-section">
+          <div className="form-section">
             <label>Password</label>
-            <div class="input-control">
+            <div className="input-control">
               <input
                 type="password"
                 placeholder="Password"
@@ -53,13 +53,13 @@ export const LoginForm = () => {
                 required
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <span class="icon">
-                <i class="far fa-wrapper fa-user small"></i>
+              <span className="icon">
+                <i className="far fa-wrapper fa-user small"></i>
               </span>
             </div>
           </div>
 
-          <div class="form-section u-text-right">
+          <div className="form-section u-text-right">
             <button type="submit" className="w-100p">
               Log In
             </button>

@@ -5,16 +5,16 @@ export const Header = () => {
   const logout = () => Meteor.logout()
 
   return (
-    <nav class="header u-relative u-unselectable header-animated">
-      <div class="header-brand">
-        <div class="nav-item no-hover">
+    <nav className="header u-relative u-unselectable header-animated">
+      <div className="header-brand">
+        <div className="nav-item no-hover">
           <a>
             <h6 className="title">IndiQA</h6>
           </a>
         </div>
       </div>
-      <div class="header-nav" id="header-menu">
-        <div class="nav-right">
+      <div className="header-nav" id="header-menu">
+        <div className="nav-right">
           <NavLink
             to="/"
             exact={true}
@@ -31,6 +31,9 @@ export const Header = () => {
             <span>
               <i className="fa-wrapper fas fa-desktop"></i>&nbsp;Presenter View
             </span>
+          </NavLink>
+          <NavLink to="/streaming" className="nav-item" activeClassName="active">
+            <span>Streaming</span>
           </NavLink>
           <NavLink to="/admin" className="nav-item" activeClassName="active">
             <span>Admin</span>

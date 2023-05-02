@@ -10,9 +10,7 @@ export const Presenter = () => {
   const { approvedQuestions } = useTracker(() => {
     Meteor.subscribe('questions.public');
 
-    const approvedQuestions = QuestionsCollection.find({ status: { $in: [ 'approved', 'spotlight' ]} }, {
-      sort: [['votes', 'desc'], ['createdAt', 'asc']]
-    }).fetch();
+    const approvedQuestions = QuestionsCollection.getActiveQuestions();
 
     return { approvedQuestions };
   });
