@@ -71,7 +71,6 @@ textarea {
 .streaming__container {
   position: absolute;
   bottom: 8vh;
-  font-family: Poppins, sans-serif;
   align-items: center;
   border-radius: 20vw;
   left: 0%;
@@ -84,6 +83,8 @@ textarea {
   gap: 5vw;
   padding: 0 5vw;
   box-sizing: border-box;
+
+  transition: 0.7s all;
 }
 
 .streaming__logo {
@@ -93,6 +94,8 @@ textarea {
   background-position: center center;
 
   grid-area: 1 / 1 / 2 / 2;
+
+  transition: 0.7s all;
 }
 
 .streaming__question_container {
@@ -107,9 +110,12 @@ textarea {
   padding: 1vw 5vw;
   width: 100%;
 
-  font-size: 2vw;
+  font-size: 2.2vw;
 
   grid-area: 1 / 2 / 2 / 3;
+
+  display: flex;
+  align-items: center;
 }
 
 @keyframes streaming__slidein {
@@ -130,6 +136,7 @@ textarea {
 
 @keyframes streaming__blurin {
   from {
+    max-height: (0);
       filter: blur(4px);
       opacity: 0;
       box-shadow: 1vw 1vw 3vw rgba(0, 0, 0, 0);
@@ -159,6 +166,13 @@ textarea {
 .streaming__transition-exit-active.streaming__logo {
   animation: 0.7s 1 reverse forwards streaming__slidein;
   animation-timing-function: cubic-bezier(0.25, 0.1, 0.2, 1.0);
+}
+
+.streaming__question.streaming__question_wordy {
+  text-align: justify;
+  border-radius: 4vw;
+  font-size: 1.8vw;
+  padding: 4vw;
 }
 
 .header .nav-item > span {
