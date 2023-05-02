@@ -25,7 +25,7 @@ export const QuestionList = () => {
 
   return (
     <section>
-      <div className="content mt-4">
+      <div className="content mt-4 pb-2 px-4">
         <h3>Ask your questions here!</h3>
         <QuestionForm />
         <h3>Vote on other questions</h3>
